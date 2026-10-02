@@ -1,0 +1,29 @@
+<view class="page home simple-home">
+  <view class="mode-switch"><view class="{{mode === 'fridge' ? 'active' : ''}}" data-mode="fridge" bindtap="switchMode">我的冰箱</view><view class="{{mode === 'selected' ? 'active' : ''}}" data-mode="selected" bindtap="switchMode">选食材</view></view>
+  <view wx:if="{{mode === 'fridge'}}">
+    <view class="fridge-heading"><view class="simple-title">打开冰箱，看看。</view><text class="text-link" bindtap="addStock">＋ 放入食材</text></view>
+    <view class="simple-sub">点一下食材，就能改数量、标记用完。</view>
+    <view class="fridge-shell"><view class="fridge-brand"><text>我的小冰箱</text><text class="fridge-light"></text></view>
+      <block wx:for="{{shelves}}" wx:key="location" wx:for-item="shelf"><view wx:if="{{shelf.location !== '冰箱外'}}" class="fridge-compartment"><view class="shelf-title">{{shelf.location}}</view><view class="fridge-foods"><view wx:for="{{shelf.items}}" wx:key="key" class="fridge-food" data-key="{{item.key}}" bindtap="openStock"><text class="food-emoji">{{item.emoji}}</text><text class="food-name">{{item.name}}</text><text class="food-amount">{{item.amountText}}</text></view><view wx:if="{{!shelf.items.length}}" class="shelf-empty" bindtap="addStock">这一层还空着，放点食材 ＋</view></view></view></block>
+    </view>
+    <block wx:for="{{shelves}}" wx:key="location" wx:for-item="shelf"><view wx:if="{{shelf.location === '冰箱外' && shelf.items.length}}" class="outside-stock"><view class="shelf-title">冰箱外 · 厨房里</view><view class="chips"><view wx:for="{{shelf.items}}" wx:key="key" class="selected-chip" data-key="{{item.key}}" bindtap="openStock">{{item.name}} · {{item.amountText}}</view></view></view></block>
+    <view wx:if="{{!stockCount && selectedCount}}" class="import-stock" bindtap="importSelected">之前选过 {{selectedCount}} 样食材，确认数量后放入 ›</view>
+  </view>
+  <view wx:if="{{mode === 'selected'}}">
+  <view class="simple-title">家里有什么？</view>
+  <view class="simple-sub">选几样食材，看看今天能做什么。</view>
+  <view class="search"><input placeholder="搜索食材，如鸡蛋、番茄" value="{{query}}" bindinput="onSearch" confirm-type="search"/><text wx:if="{{query}}" bindtap="clearSearch">×</text></view>
+  <view class="simple-categories"><view wx:for="{{categories}}" wx:key="*this" class="simple-category {{category === item && !query ? 'active' : ''}}" data-value="{{item}}" bindtap="selectCategory">{{item}}</view></view>
+  <view class="ingredient-grid"><view wx:for="{{visibleItems}}" wx:key="id" class="ingredient {{item.selected ? 'selected' : ''}}" data-id="{{item.id}}" bindtap="toggleIngredient"><text>{{item.name}}</text><text wx:if="{{item.selected}}" class="tag-check">✓</text><text wx:if="{{!item.supported}}" class="not-covered">待补菜谱</text></view></view>
+  <view wx:if="{{!visibleItems.length}}" class="empty compact">没找到，换个名字试试。</view>
+  <view class="simple-row selected-summary" bindtap="toggleSelected"><text class="ellipsis">{{selectedCount ? '已选 ' + selectedCount + ' 样 · ' + selectedText : '还没选食材'}}</text><text wx:if="{{selectedCount}}" class="muted">{{expanded ? '收起' : '查看'}}</text></view>
+  <view wx:if="{{expanded && selectedCount}}" class="selection-details"><view class="chips"><view wx:for="{{selectedItems}}" wx:key="id" class="selected-chip" data-id="{{item.id}}" bindtap="toggleIngredient">{{item.name}} ×</view></view><view class="clear-link" bindtap="clearSelected">清空食材（保留调料）</view></view>
+  <view wx:if="{{selectedCount}}" class="import-stock" bindtap="importSelected">这些家里真有？放入冰箱 ＋</view>
+  </view>
+  <view class="simple-row" bindtap="openPantry"><text>常备调料</text><text class="row-value ellipsis">{{pantryText}}</text><text class="muted">›</text></view>
+  <view class="simple-row" bindtap="toggleFilters"><text>筛选<text wx:if="{{filterCount}}" class="small muted"> · 已选 {{filterCount}} 项</text></text><text class="muted">{{filtersOpen ? '收起' : '展开'}}</text></view>
+  <view wx:if="{{filtersOpen}}" class="simple-filters"><view class="filters"><view class="filter {{quick ? 'active' : ''}}" data-key="quick" bindtap="toggleFilter">15 分钟内</view><view class="filter {{mild ? 'active' : ''}}" data-key="mild" bindtap="toggleFilter">不吃辣</view><picker range="{{equipmentOptions}}" bindchange="selectEquipment"><view class="filter">{{equipment === '全部' ? '不限工具' : equipment}}⌄</view></picker></view><view wx:if="{{filterCount}}" class="clear-link" bindtap="resetFilters">清除筛选</view></view>
+</view>
+<view class="tab-cta"><view wx:if="{{readyCount}}" class="cta-hint">{{readyCount}} 道菜现在就能做</view><button class="primary" disabled="{{mode === 'fridge' ? !stockCount : !mainCount}}" bindtap="showResults">{{mode === 'fridge' ? '用这些做饭' : '看看能做什么'}}</button></view>
+
+<view wx:if="{{editItem}}" class="stock-mask" bindtap="closeStock"><view class="stock-sheet" catchtap="stopTap"><view class="fridge-heading"><view class="section-title">{{editItem.emoji}} {{editItem.name}}</view><text bindtap="closeStock">关闭</text></view><view class="stock-current">{{editItem.amountText}}</view><view class="small muted">{{editItem.location}}</view><view wx:if="{{editItem.quantity !== null}}" class="stock-adjust"><button class="secondary" data-delta="{{-editItem.step}}" bindtap="adjustStock">− {{editItem.step}}{{editItem.unit}}</button><button class="secondary" data-delta="{{editItem.step}}" bindtap="adjustStock">＋ {{editItem.step}}{{editItem.unit}}</button></view><button class="primary" bindtap="editStock">修改数量 / 位置</button><view class="used-up" bindtap="useUp">这份用完了</view></view></view>

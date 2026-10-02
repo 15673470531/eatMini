@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/results/results",
+    "pages/recipe/recipe",
+    "pages/shopping/shopping",
+    "pages/mine/mine",
+    "pages/pantry/pantry",
+    "pages/stock/stock",
+    "pages/about/about",
+    "pages/admin/admin",
+    "pages/admin-ingredient/admin-ingredient",
+    "pages/admin-recipe/admin-recipe"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f8f9f4",
+    "navigationBarTitleText": "食光 · 今天吃什么",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f8f9f4",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#8a928b",
+    "selectedColor": "#244e3b",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "做什么",
+        "iconPath": "assets/tabbar/cook.png",
+        "selectedIconPath": "assets/tabbar/cook-active.png"
+      },
+      {
+        "pagePath": "pages/shopping/shopping",
+        "text": "买什么",
+        "iconPath": "assets/tabbar/shopping.png",
+        "selectedIconPath": "assets/tabbar/shopping-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/tabbar/mine.png",
+        "selectedIconPath": "assets/tabbar/mine-active.png"
+      }
+    ]
+  }
+}

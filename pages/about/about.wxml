@@ -1,0 +1,28 @@
+<view class="about-page">
+  <view class="brand-intro">
+    <view class="brand-mark">🐬</view>
+    <view class="brand-name">{{info.name}}</view>
+    <view class="brand-slogan">{{info.slogan}}</view>
+    <view class="brand-description">从冰箱里的食材出发，找到今天想做的菜。<text>少一点准备，多一点家常的好味道。</text></view>
+  </view>
+
+  <view class="contact-heading">我们在这里</view>
+  <view class="contact-card">
+    <button class="contact-service" open-type="contact" hover-class="row-pressed">
+      <view class="service-icon"><view class="bubble"><text>···</text></view></view>
+      <view class="service-copy"><view class="service-title">联系客服</view><view class="service-description">使用中有疑问，和我们聊聊</view></view>
+      <text class="service-arrow">›</text>
+    </button>
+    <view class="contact-divider"></view>
+    <view class="contact-row" bindtap="copyEmail" hover-class="row-pressed">
+      <view class="contact-content"><view class="contact-label">反馈邮箱</view><view class="contact-value">{{info.email}}</view></view>
+      <text class="copy-action">复制</text>
+    </view>
+    <view class="contact-row" bindtap="copyWechat" hover-class="row-pressed">
+      <view class="contact-content"><view class="contact-label">开发者微信</view><view class="contact-value">{{info.wechat}}</view></view>
+      <text class="copy-action">复制</text>
+    </view>
+  </view>
+  <view class="contact-hint">想要什么菜、遇到什么问题，都欢迎告诉我们。</view>
+  <view class="about-footer"><view>陪你把每一顿饭，做得简单一点。</view><view class="storage-note">登录后同步冰箱、清单和收藏，离线修改暂存本机。<text>微信登录仅用于识别账号，不获取手机号。</text></view></view>
+</view>

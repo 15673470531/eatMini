@@ -1,0 +1,26 @@
+<view class="mine-page">
+  <view class="profile">
+    <!-- 已登录：点头像直接换（open-type="chooseAvatar" 才会弹微信头像选择）
+         ⚠️ 尺寸必须写内联 style：微信 button 默认宽 184px，class 里的 width 压不住（height 却生效）→ 会被拉成横长条 -->
+    <button wx:if="{{user}}" class="profile-avatar" style="width:108rpx;height:108rpx;padding:0;margin:0;border:0;display:flex;align-items:center;justify-content:center;line-height:1;" open-type="chooseAvatar" bindchooseavatar="chooseAvatar" hover-class="none" aria-label="更换头像">
+      <image wx:if="{{avatar}}" class="profile-avatar-image" src="{{avatar}}" mode="aspectFill"></image>
+      <text wx:else class="profile-avatar-fallback">🐬</text>
+      <text class="profile-avatar-edit">✏️</text>
+    </button>
+    <view wx:else class="profile-mark">🐬</view>
+    <view class="profile-info">
+      <view class="profile-name">{{user ? user.nickName : '海豚带你做饭'}}</view>
+      <view wx:if="{{user}}" class="profile-id">用户 ID：{{user.userId}}</view>
+      <button wx:if="{{!user}}" class="profile-login" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">微信登录</button>
+      <view wx:if="{{!user}}" class="profile-skip" bindtap="login">跳过头像，直接登录</view>
+    </view>
+  </view>
+  <view class="mine-menu">
+    <view class="mine-row" bindtap="openFridge" hover-class="mine-row-pressed"><text class="mine-label">我的冰箱</text><text class="mine-value">查看库存</text><text class="mine-arrow">›</text></view>
+    <view class="mine-row" bindtap="openFavorites" hover-class="mine-row-pressed"><text class="mine-label">想吃的</text><text class="mine-value">{{favoriteCount}} 道收藏</text><text class="mine-arrow">›</text></view>
+    <view class="mine-row" bindtap="openPantry" hover-class="mine-row-pressed"><text class="mine-label">常备调料</text><text class="mine-value">已选 {{pantryCount}} 样</text><text class="mine-arrow">›</text></view>
+    <view wx:if="{{user.isAdmin}}" class="mine-row" bindtap="openAdmin" hover-class="mine-row-pressed"><text class="mine-label">管理菜谱</text><text class="mine-value">管理员</text><text class="mine-arrow">›</text></view>
+    <view class="mine-row" bindtap="openAbout" hover-class="mine-row-pressed"><text class="mine-label">关于我们</text><text class="mine-arrow">›</text></view>
+  </view>
+  <button wx:if="{{user}}" class="logout-button" bindtap="logout">退出登录</button>
+</view>

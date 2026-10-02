@@ -1,0 +1,6 @@
+/* 页面共用视觉样式见 app.wxss。 */
+
+/* 可省配料逐项解释，不与必需缺料混淆。 */
+.optional-note { font-size: 22rpx; line-height: 1.65; margin-top: 8rpx; max-width: 460rpx; }
+.material-row { align-items: flex-start; }
+.quantity { padding-top: 2rpx; }

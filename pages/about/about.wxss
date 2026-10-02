@@ -1,0 +1,22 @@
+.about-page{padding:48rpx 36rpx calc(48rpx + env(safe-area-inset-bottom));color:#233d32}
+.brand-intro{text-align:center;padding:10rpx 0 54rpx}
+.brand-mark{width:112rpx;height:112rpx;margin:0 auto 26rpx;background:#e8efe6;border:1rpx solid #dfe8dc;border-radius:34rpx;display:flex;align-items:center;justify-content:center;font-size:64rpx}
+.brand-name{font-size:40rpx;font-weight:650;letter-spacing:1rpx;line-height:1.4}
+.brand-slogan{font-size:27rpx;color:#657d6b;margin-top:14rpx}
+.brand-description{font-size:24rpx;line-height:1.9;color:#859085;margin-top:26rpx}
+.brand-description text,.storage-note text{display:block}
+.contact-heading{font-size:24rpx;font-weight:500;color:#7e897f;margin:0 4rpx 18rpx}
+.contact-card{background:#fff;border:1rpx solid #e9ede5;border-radius:26rpx;overflow:hidden}
+.contact-service{display:flex;align-items:center;width:100%;padding:30rpx 28rpx;margin:0;background:transparent;border-radius:0;line-height:1.5;text-align:left;color:#233d32;font-weight:400}
+.contact-service::after{border:0}
+.service-icon{width:72rpx;height:72rpx;border-radius:22rpx;background:#edf3e9;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:22rpx}
+.bubble{width:38rpx;height:30rpx;border:3rpx solid #577451;border-radius:10rpx;position:relative;display:flex;align-items:center;justify-content:center}
+.bubble::after{content:'';position:absolute;bottom:-8rpx;left:6rpx;width:9rpx;height:9rpx;background:#edf3e9;border-left:3rpx solid #577451;transform:skewY(-35deg)}
+.bubble text{font-size:24rpx;line-height:20rpx;color:#577451;margin-top:-7rpx;letter-spacing:2rpx}
+.service-copy{flex:1;min-width:0}.service-title{font-size:29rpx;font-weight:600}.service-description{font-size:22rpx;color:#8b9589;margin-top:6rpx}.service-arrow{font-size:36rpx;color:#a3afa0;margin-left:14rpx}
+.contact-divider{height:1rpx;background:#eef0eb;margin:0 28rpx}
+.contact-row{display:flex;align-items:center;padding:25rpx 28rpx;gap:20rpx}.contact-row+.contact-row{padding-top:10rpx;padding-bottom:30rpx}
+.contact-content{flex:1;min-width:0}.contact-label{font-size:22rpx;color:#8a9588;margin-bottom:7rpx}.contact-value{font-size:27rpx;line-height:1.5;word-break:break-all}
+.copy-action{font-size:22rpx;color:#5b7656;background:#f0f4ec;border-radius:10rpx;padding:10rpx 18rpx;flex-shrink:0}.row-pressed{background:#f4f7f0}
+.contact-hint{font-size:21rpx;color:#98a091;text-align:center;margin:20rpx 0 0;line-height:1.7}
+.about-footer{text-align:center;margin-top:62rpx;color:#7d8c77;font-size:23rpx;line-height:1.8}.storage-note{font-size:20rpx;color:#a0a89a;margin-top:18rpx}

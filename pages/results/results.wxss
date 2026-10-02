@@ -1,0 +1,14 @@
+/* 页面共用视觉样式见 app.wxss。 */
+
+.shopping-shortcut { color: #6b855e; font-size: 24rpx; padding: 10rpx 0 20rpx; }
+.recipe-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; margin-top: 16rpx; }
+.recipe-bottom .recipe-status { flex: 1; min-width: 0; margin: 0; }
+.quick-add { flex-shrink: 0; font-size: 23rpx; font-weight: 500; padding: 17rpx 20rpx; border-radius: 12rpx; color: #315a38; background: #eaf0e3; }
+.quick-add.added, .quick-add[disabled] { background: #f0f2ec; color: #94a18b; }
+
+.dish-categories { width: 100%; white-space: nowrap; margin: 8rpx 0 14rpx; }
+.dish-category-row { display: flex; gap: 12rpx; padding: 8rpx 0 14rpx; }
+.dish-category { flex-shrink: 0; display: flex; align-items: center; gap: 12rpx; padding: 13rpx 20rpx; border-radius: 30rpx; background: #edf0e8; color: #7e8b73; font-size: 24rpx; }
+.dish-category.active { background: #244e3b; color: #fff; }
+.category-count { font-size: 21rpx; opacity: .8; }
+.expanded-note { font-size: 22rpx; color: #929c88; margin: 8rpx 0; }

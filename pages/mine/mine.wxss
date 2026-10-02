@@ -1,0 +1,15 @@
+.mine-page{padding:40rpx 32rpx calc(56rpx + env(safe-area-inset-bottom));color:#233d32}
+.profile{display:flex;align-items:center;gap:26rpx;padding:28rpx 8rpx 50rpx;min-height:194rpx}
+.profile-mark{display:flex;align-items:center;justify-content:center;width:108rpx;height:108rpx;flex-shrink:0;background:#e8efe3;border-radius:32rpx;font-size:62rpx}
+.profile-info{flex:1;min-width:0}.profile-name{font-size:35rpx;font-weight:600;line-height:1.5;overflow-wrap:break-word}.profile-id{font-size:23rpx;color:#879381;margin-top:8rpx;word-break:break-all}
+/* 已登录头像：外形与 .profile-mark 一致，点它调起微信头像选择。
+   ⚠️ 宽高/内边距一律写 wxml 内联 style —— button 默认宽 184px，class 里的 width 不生效会成横长条 */
+.profile-avatar{position:relative;background:#e8efe3;border-radius:32rpx;overflow:visible}
+.profile-avatar-image{width:108rpx;height:108rpx;border-radius:32rpx}
+.profile-avatar-fallback{font-size:62rpx}
+.profile-avatar-edit{position:absolute;right:-6rpx;bottom:-6rpx;font-size:24rpx;line-height:1}
+.profile-skip{margin-top:10rpx;font-size:23rpx;color:#9aa595}
+.profile-login{display:inline-flex;align-items:center;justify-content:center;min-height:64rpx;padding:13rpx 28rpx;margin:14rpx 0 0;background:#244e3b;color:#fff;border-radius:14rpx;font-size:25rpx;font-weight:500;line-height:1.4}.profile-login[disabled]{background:#dce4d7;color:#83907c}
+.mine-menu{background:#fff;border:1rpx solid #e9ede4;border-radius:24rpx;overflow:hidden;padding:0 28rpx}
+.mine-row{display:flex;align-items:center;gap:18rpx;min-height:114rpx;padding:28rpx 0;border-bottom:1rpx solid #eef1e9}.mine-row:last-child{border-bottom:0}.mine-label{font-size:29rpx;font-weight:500;flex:1}.mine-value{font-size:24rpx;color:#929c89}.mine-arrow{font-size:34rpx;line-height:1;color:#a7b19e}.mine-row-pressed{background:#f5f7f1}
+.logout-button{display:block;margin:46rpx auto 0;padding:20rpx 40rpx;background:transparent;color:#8d9787;font-size:25rpx;font-weight:400;line-height:1.5}.logout-button::after,.profile-login::after,.profile-avatar::after{border:0}

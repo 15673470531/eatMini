@@ -1,0 +1,22 @@
+<view class="admin-page">
+ <view class="admin-tabs"><view class="admin-tab {{tab === 'recipes' ? 'selected' : ''}}" data-tab="recipes" bindtap="changeTab">菜谱 {{totalRecipes}}</view><view class="admin-tab {{tab === 'ingredients' ? 'selected' : ''}}" data-tab="ingredients" bindtap="changeTab">食材 {{totalItems}}</view></view>
+ <view wx:if="{{error}}" class="admin-empty"><view>{{error}}</view><button bindtap="load">重新加载</button></view>
+ <view wx:elif="{{loading}}" class="admin-empty">正在加载…</view>
+ <block wx:elif="{{allowed}}">
+  <input class="admin-search" placeholder="{{tab === 'recipes' ? '搜索菜名或主料' : '搜索食材或别名'}}" value="{{query}}" bindinput="search" />
+  <block wx:if="{{tab === 'recipes'}}">
+   <view wx:if="{{ingredientFilter}}" class="filter-note" bindtap="clearFilter">{{filterName}}的菜谱 · 清除筛选 ×</view>
+   <button class="admin-primary" bindtap="newRecipe">＋ {{ingredientFilter ? '给它加一道菜' : '新增菜谱'}}</button>
+   <view class="admin-card" wx:for="{{recipes}}" wx:key="id">
+    <view class="admin-row" data-id="{{item.id}}" bindtap="editRecipe"><view class="grow"><view class="admin-title">{{item.name}} <text wx:if="{{item.isActive === false}}" class="badge">已下架</text></view><view class="admin-sub">{{item.mainText}} · {{item.timeMin}} 分钟</view></view><text class="arrow">›</text></view>
+    <view class="actions"><text data-id="{{item.id}}" bindtap="editRecipe">编辑</text><text data-id="{{item.id}}" bindtap="copyRecipe">复制新菜</text><text data-id="{{item.id}}" bindtap="toggleStatus">{{item.isActive === false ? '上架' : '下架'}}</text></view>
+   </view><view wx:if="{{!recipes.length}}" class="admin-empty">还没有匹配的菜谱，添加一道吧。</view>
+  </block>
+  <block wx:else>
+   <view class="gap-tabs"><text class="{{gap === 'all' ? 'chosen' : ''}}" data-gap="all" bindtap="setGap">全部</text><text class="{{gap === 'none' ? 'chosen' : ''}}" data-gap="none" bindtap="setGap">暂无菜谱</text><text class="{{gap === 'paired' ? 'chosen' : ''}}" data-gap="paired" bindtap="setGap">只有搭配菜</text></view>
+   <button class="admin-primary" bindtap="newIngredient">＋ 新增食材</button>
+   <view class="admin-card" wx:for="{{items}}" wx:key="id"><view class="admin-row" data-id="{{item.id}}" bindtap="editIngredient"><view class="grow"><view class="admin-title">{{item.name}} <text class="badge">{{item.category}}</text></view><view class="admin-sub">{{item.recipeCount}} 道主料菜 · {{item.coverageText}}</view></view><text class="arrow">›</text></view><view class="actions"><text data-id="{{item.id}}" data-name="{{item.name}}" bindtap="showRelated">查看菜谱</text><text data-id="{{item.id}}" bindtap="addForIngredient">给它加一道菜</text><text data-id="{{item.id}}" bindtap="editIngredient">编辑食材</text></view></view>
+   <view wx:if="{{!items.length}}" class="admin-empty">没有符合条件的食材。</view>
+  </block>
+ </block>
+</view>
